@@ -1,0 +1,201 @@
+@font-face {
+    font-family: "poet";
+    src: url("/css/PoetsenOne-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "aristo";
+    src: url("/css/AristotelicaSmallCaps-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "simply";
+    src: url("/css/Simply-Rounded.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "quick";
+    src: url("/css/Quick.ttf") format("truetype");
+}
+
+body
+{
+  background-color: orange;
+  width: 100%;
+  font-family: "quick",arial,sans-serif;
+  margin: 0;
+}
+
+header
+{
+  border: 1px solid #00000000;
+  text-shadow: 3px 2px white;
+  height: 170px;
+  w
+  background-color: #f8b173;
+}
+header .title
+{
+  text-align: center;
+  font-size: 66px;
+  font-family: "quick",arial,sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f8b173;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+    color:white;
+}
+
+main
+{
+  background-color:  #f8b173;
+  /* height: 200px; */
+  margin-top: 15px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+main a
+{
+  text-decoration: none;
+  color:black;
+  margin: 5px;
+}
+
+body #main_mem
+{
+  width: 72%;
+}
+
+#title_connexion
+{
+  padding: 10px;
+}
+#main_gallery
+{
+  /* height: 569px; */
+  /* padding: 10px 10px; */
+}
+
+#main_gallery div
+{
+  /* display: unset; */
+}
+
+#main_review
+{
+/*  height: 569px;*/
+
+
+}
+
+main h2
+{
+  padding: 10px;
+}
+#div_gallery
+{
+  display: inline-block;
+  margin: 20px 20px;
+}
+
+.div_com
+{
+ margin: 5px 5px;
+ padding: 5px 10px;
+ background-color: white;
+ border-radius: 5px;
+ display: inline-block;
+}
+
+#con_com
+{
+  width: 404px;
+  margin: 0 auto;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 11px;
+}
+
+.side
+{
+  text-align: center;
+  /* border: 1px solid black; */
+  position: absolute;
+  height: 750px;
+  top: 236px;
+  right: 4px;
+  background-color:  #f8b173;
+  overflow: auto;
+  padding: 10px;
+}
+
+body .side
+{
+  width: 25%;
+}
+
+.pagination
+{
+  display: inline-block;
+}
+
+.pagination a
+{
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 0 4px;
+}
+
+.pagination a.active
+{
+    background-color: #f57200;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination a:hover:not(.active)
+{
+  background-color: #ce701eab;
+}
+
+.like_gal
+{
+  font-family: "simply",arial,sans-serif;
+}
+
+#go_signin
+{
+  margin:10px ;
+
+}
+
+#bmount
+{
+  cursor: not-allowed;
+
+}
