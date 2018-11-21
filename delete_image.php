@@ -1,7 +1,7 @@
 <?php
 session_start();
 try {
-    $db = new PDO('mysql:host=mysql;port=3306;dbname=camagru', 'root', 'pass');
+    $db = new PDO('mysql:host=localhost;port=3306;dbname=camagru', 'root', 'pass87');
 } catch (\Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }

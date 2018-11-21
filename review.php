@@ -5,7 +5,7 @@ if (!isset($_SESSION['user'])) {
     header('location: index.php');
 }
 
-$db = new PDO('mysql:host=mysql;port=3306;dbname=camagru', 'root', 'pass');
+$db = new PDO('mysql:host=localhost;port=3306;dbname=camagru', 'root', 'pass87');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if (isset($_GET['id_img']) && !empty($_GET['id_img'])) {

@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-if (isset($_SESSION['user']))
-{
-  header('location: membre.php');
-}
 ?>
 
 <!DOCTYPE html>
@@ -35,27 +31,21 @@ if (isset($_SESSION['user']))
   </ul>
 </div>
 <main>
-  <h2 id="title_connexion">CONNEXION</h2>
-  <form action="connexion.php" method="post">
-    nom d'utilisateur :<br>
-    <input type="text" name="user"><br>
-    mot de passe :<br>
-    <input type="password" name="pwd"><br>
-    <input type="submit" name="submit" value="Valider">
-  </form>
+
   <br>
-  <a id="go_signin" href="inscription.php">Pas encore inscrit ?</a>
+  <!-- <a id="go_signin" href="inscription.php">Retour vers la page d'accueil ?</a> -->
   <br>
   <?php
-   if ($_GET['error'] == 1) {
-     echo "<div style='color:red'>Erreur dans les identifiants</div>";
-   }
-   elseif ($_GET['error'] == 2) {
-     echo "<div style='color:red'>Erreur dans le mot de passe</div>";
-   }elseif ($_GET['error'] == 3) {
-     echo "<div style='color:red'>Erreur : Compte non confirmer, regarder vos mails</div>";
+   if ($_GET['sit'] == 1) {
+     echo "<div style='color:green'>Bienvenue , votre compte est confirmer !</div>";
+   }elseif ($_GET['sit'] == 2) {
+     echo "<div style='color:green'>Compte deja confirmer</div>";
+   }elseif ($_GET['sit'] == 3) {
+     echo "<div style='color:red'>Erreur : pas d'utilisateur enregistrer</div>";
    }
    ?>
+   <a id="go_signin" href="index.php">Retour vers la page d'accueil ?</a>
+
 </main>
 </body>
 </html>

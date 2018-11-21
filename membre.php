@@ -37,7 +37,7 @@ if (!isset($_SESSION['user']))
   </div>
  <main id="main_mem">
 
-<video id="video" width="640" height="480" autoplay></video>
+<video id="video" width="320" height="240" autoplay></video>
 <button id="snap">Prendre une photo</button>
 <canvas id="canvas"></canvas>
 <!-- <img src="" id="photo" alt="photo"> -->
@@ -145,7 +145,7 @@ if (isset($_POST['submit_image']))
         $_SESSION['path_img'] = $target_path;
       // }
 
-    $db = new PDO('mysql:host=mysql;port=3306;dbname=camagru', 'root', 'pass');
+    $db = new PDO('mysql:host=localhost;port=3306;dbname=camagru', 'root', 'pass87');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     if ($_POST['type_filter'] && !empty($_POST['type_filter'])) {
       // echo "etape 3";
@@ -215,7 +215,7 @@ else {
 </main>
 <div class="side">
 <?php
-$db = new PDO('mysql:host=mysql;port=3306;dbname=camagru', 'root', 'pass');
+$db = new PDO('mysql:host=localhost;port=3306;dbname=camagru', 'root', 'pass87');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $sql = $db->prepare('SELECT ID_IMG, PATH_IMG FROM image WHERE ID_USER = ? ORDER BY DATE_IMG DESC');

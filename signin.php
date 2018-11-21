@@ -13,7 +13,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Valider") {
             exit();
         }
         try {
-            $db = new PDO('mysql:host=mysql;port=3306;dbname=camagru', 'root', 'pass');
+            $db = new PDO('mysql:host=localhost;port=3306;dbname=camagru', 'root', 'pass87');
         } catch (\Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
@@ -78,14 +78,14 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Valider") {
 
             if ($verify->rowCount() == 1) {
                 $header="MIME-Version: 1.0\r\n";
-                $header.='From:"PrimFX.com"<support@primfx.com>'."\n";
+                $header.='From:"camagru.com"<Kalys21@gmail.com>'."\n";
                 $header.='Content-Type:text/html; charset="uft-8"'."\n";
                 $header.='Content-Transfer-Encoding: 8bit';
                 $message='
                  <html>
                     <body>
                        <div align="center">
-                          <a href="http://camagru/confirmation.php?pseudo='.urlencode($user).'&key='.$key.'">Confirmez votre compte !</a>
+                          <a href="http://127.0.0.1:8080/confirmation.php?user='.urlencode($user).'&key='.$key.'">Confirmez votre compte !</a>
                        </div>
                     </body>
                  </html>
@@ -93,7 +93,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Valider") {
                 mail($_POST['email'], "Confirmation de compte", $message, $header);
                 session_start();
                 $_SESSION['id'] = $data['id_user'];
-                $_SESSION['user'] = $user;
+                // $_SESSION['user'] = $user;
                 $_SESSION['email'] = $_POST['email'];
 
                 header('Location: membre.php');

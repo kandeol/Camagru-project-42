@@ -46,18 +46,20 @@ function setup($db, $db_name)
 
   $sql = "CREATE TABLE T_COM (
     ID_COM int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    ID_USER int(11) NOT NULL,
+    USER varchar(255) NOT NULL,
     TEXT_COM text NOT NULL,
     ID_IMG int(11) NOT NULL,
     DATE_COM DATETIME DEFAULT NOW(),
-    FOREIGN KEY (ID_IMG) REFERENCES image(ID_IMG),
-    FOREIGN KEY (ID_USER) REFERENCES login(id_user)
+    FOREIGN KEY (ID_IMG) REFERENCES image(ID_IMG)
+    -- FOREIGN KEY (USER) REFERENCES login(user)
   )";
   $result = $db->exec($sql);
 }
 
-$dsn = "mysql:host=".$DB_HOST;
-$db = new PDO($dsn, $DB_USER, $DB_PASSWORD);
+// $dsn = "mysql:host=".$DB_HOST;
+$db = new PDO('mysql:host=localhost;port=3306', 'root', 'pass87');
+// $db = new PDO('mysql:host=localhost;port=3306;dbname=camagru', 'root', 'pass87');
+// $db = new PDO($dsn, $DB_USER, $DB_PASSWORD);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 setup($db, $DB_NAME);
 echo "setup completed".PHP_EOL;
