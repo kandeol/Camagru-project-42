@@ -29,6 +29,37 @@ if (isset($_GET['id_img']) && !empty($_GET['id_img'])) {
             $ins->bindParam(3, $get_id_img, PDO::PARAM_INT);
             $ins->execute(array($_SESSION['user'], $comment, $get_id_img));
             $c_msg = "<span style='color:green'>Votre commentaire a bien ete ajoute</span>";
+
+            $sql = $db->prepare('SELECT ID_USER FROM image WHERE ID_IMG= ?');
+            $sql->execute(array($get_id_img));
+            $result = $sql->fetch();
+            $sql->closeCursor();
+
+            if ($result['ID_USER'] != $_SESSION[id]) {
+
+
+                  $sql = $db->prepare('SELECT email FROM login WHERE id_user= ?');
+                  $sql->execute(array($result['ID_USER']));
+                  $result = $sql->fetch();
+
+
+                  $header="MIME-Version: 1.0\r\n";
+                  $header.='From:"camagru.com"<Kalys21@gmail.com>'."\n";
+                  $header.='Content-Type:text/html; charset="uft-8"'."\n";
+                  $header.='Content-Transfer-Encoding: 8bit';
+                  $message='
+                   <html>
+                      <body>
+                         <div align="center">
+                            <h3>Vous avez recu un nouveau commentaire sur vos photos ! </h3>
+                            <br>
+                            <span>"'.$comment.'"</span>
+                         </div>
+                      </body>
+                   </html>
+                       ';
+                  mail($result['email'], "Nouveau commentaire", $message, $header);
+          }
         } else {
             $c_msg = "Erreur : Tous les champs doivent etre completes";
         }

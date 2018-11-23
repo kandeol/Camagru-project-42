@@ -21,7 +21,7 @@ function setup($db, $db_name)
   `user` varchar(255) NOT NULL,
   `pwd` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `confirmkey` varchar(255) NOT NULL,
+  `confirmkey` varchar(15) NOT NULL,
   `confirme` int(1) NOT NULL
 )";
   $result = $db->exec($sql);
@@ -56,10 +56,8 @@ function setup($db, $db_name)
   $result = $db->exec($sql);
 }
 
-// $dsn = "mysql:host=".$DB_HOST;
-$db = new PDO('mysql:host=localhost;port=3306', 'root', 'pass87');
-// $db = new PDO('mysql:host=localhost;port=3306;dbname=camagru', 'root', 'pass87');
-// $db = new PDO($dsn, $DB_USER, $DB_PASSWORD);
+$dsn = "mysql:host=".$DB_HOST;
+$db = new PDO($dsn,$DB_USER,$DB_PASSWORD);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 setup($db, $DB_NAME);
 echo "setup completed".PHP_EOL;

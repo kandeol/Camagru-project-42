@@ -38,6 +38,7 @@ $depart = ($pageCourante-1)*$imagesParPage;
   <div id="bar_nav">
     <ul>
     <!--  <li><a class="active" href="#home">Home</a></li> -->
+      <li><a href="profile.php">Profile</a></li>
       <li><a href="membre.php">Montage</a></li>
       <li><a href="gallery.php">Gallery</a></li>
       <?php

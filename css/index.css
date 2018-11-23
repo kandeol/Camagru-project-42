@@ -109,6 +109,19 @@ body #main_mem
 
 }
 
+#form_user
+{
+  visibility: hidden;
+}
+#form_email
+{
+  visibility: hidden;
+}
+#form_pwd
+{
+  visibility: hidden;
+}
+
 main h2
 {
   padding: 10px;

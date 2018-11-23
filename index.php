@@ -46,6 +46,9 @@ if (isset($_SESSION['user']))
   <br>
   <a id="go_signin" href="inscription.php">Pas encore inscrit ?</a>
   <br>
+  <br>
+  <a id="go_signin" href="reset.php">mot de passe oublier ?</a>
+  <br>
   <?php
    if ($_GET['error'] == 1) {
      echo "<div style='color:red'>Erreur dans les identifiants</div>";
@@ -54,6 +57,8 @@ if (isset($_SESSION['user']))
      echo "<div style='color:red'>Erreur dans le mot de passe</div>";
    }elseif ($_GET['error'] == 3) {
      echo "<div style='color:red'>Erreur : Compte non confirmer, regarder vos mails</div>";
+   }elseif ($_GET['succes'] == 1) {
+     echo "<div style='color:green'>mot de passe reinitialiser !</div>";
    }
    ?>
 </main>

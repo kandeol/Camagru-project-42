@@ -23,6 +23,7 @@ if (!isset($_SESSION['user']))
   <div id="bar_nav">
     <ul>
     <!--  <li><a class="active" href="#home">Home</a></li> -->
+      <li><a href="profile.php">Profile</a></li>
       <li><a href="membre.php">Montage</a></li>
       <li><a href="gallery.php">Gallery</a></li>
       <?php
@@ -93,7 +94,7 @@ if (isset($_POST['submit_image']))
 <br>
   <form action="membre.php" method="post" enctype="multipart/form-data">
     <input type="file" name="myimage">
-    <input type="radio" name="type_filter" value="filter1" onclick="bascule('bmount')" ><img src="data/tail.png" height=50 width="80" />
+    <input type="radio" name="type_filter" value="filter1" onclick="bascule('bmount')" checked><img src="data/tail.png" height=50 width="80" />
     <input type="radio" name="type_filter" value="filter2" onclick="bascule('bmount')" ><img src="data/edward.png" height=50 width="80" />
     <input type="radio" name="type_filter" value="filter3" onclick="bascule('bmount')" ><img src="data/cadre.png" height=50 width="80" />
     <br>
