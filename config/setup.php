@@ -22,8 +22,9 @@ function setup($db, $db_name)
   `pwd` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `confirmkey` varchar(15) NOT NULL,
-  `confirme` int(1) NOT NULL
-)";
+  `confirme` int(1) NOT NULL,
+  `notif` int(1) NOT NULL
+  )";
   $result = $db->exec($sql);
 
   $sql = "CREATE TABLE image (

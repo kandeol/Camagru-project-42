@@ -23,18 +23,21 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Valider") {
             exit();
         } else {
             if ($pwd_hash == $result['pwd']) {
-              if ($result['confirme'] == 1) {
-                session_start();
-                $_SESSION['id'] = $result['id_user'];
-                $_SESSION['user'] = $result['user'];
-                $_SESSION['email'] = $result['email'];
-                header('location: membre.php');
-                exit();
-              }else {
-                header('location: index.php?error=3');
-              }
+                if ($result['confirme'] == 1) {
+                    session_start();
+                    $_SESSION['id'] = $result['id_user'];
+                    $_SESSION['user'] = $result['user'];
+                    $_SESSION['email'] = $result['email'];
+                    $_SESSION['notif'] = $result['notif'];
+                    header('location: membre.php');
+                    exit();
+                } else {
+                    header('location: index.php?error=3');
+                    exit();
+                }
             } else {
                 header('location: index.php?error=2');
+                exit();
             }
         }
     } else {

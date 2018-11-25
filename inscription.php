@@ -5,9 +5,6 @@ session_start();
 
 <!DOCTYPE html>
 <html>
-
-
-
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
   <meta http-equiv="content-type" content="text/css">
@@ -39,21 +36,21 @@ session_start();
     <form method="post" action="signin.php">
       nom d'utilisateur :<br>
       <input type="text" name="user"><br>
-     adresse mail :<br>
+      adresse mail :<br>
       <input type="text" name="email"><br>
-     mot de passe :<br>
+      mot de passe :<br>
       <input type="password" name="pwd"><br>
-     retaper le mot de passe :<br>
+      retaper le mot de passe :<br>
       <input type="password" name="re_pwd"><br>
       <input type="submit" name="submit" value="Valider">
-   </form>
-      <?php
+    </form>
+    <?php
     if ($_GET['error'] == 1) {
         echo "<div style='color:red'>les champs ne sont pas tous remplies</div>";
     } elseif ($_GET['error'] == 2) {
         echo "<div style='color:red'>nom d'utilisateur ou adresse mail deja enregistrer</div>";
     } elseif ($_GET['error'] == 3) {
-        echo "<div style='color:red'>nom d'utilsateur doit faire au moins 5 caracteres</div>";
+        echo "<div style='color:red'>nom d'utilsateur doit faire entre 5 et 20 caracteres</div>";
     # code...
     } elseif ($_GET['error'] == 4) {
         echo "<div style='color:red'>adresse mail non valide </div>";
@@ -66,6 +63,9 @@ session_start();
     # code...
     } elseif ($_GET['error'] == 7) {
         echo "<div style='color:red'>les deux champs du mot de passe ne sont pas identiques</div>";
+        # code...
+    } elseif ($_GET['error'] == 8) {
+        echo "<div style='color:red'>le mot de passe doit faire entre 5 et 20 caracteres</div>";
         # code...
     }
 

@@ -28,8 +28,9 @@ if ($_SESSION['id'] == $result['ID_USER']) {
     $sql->execute(array($_GET['id_i']));
     $sql->closeCursor();
 
-    header('Location: membre.php?error=1');
+    header('Location: membre.php');
     exit();
 } else {
     header('Location: membre.php?error=2');
+    exit();
 }

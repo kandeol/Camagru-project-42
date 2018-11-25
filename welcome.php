@@ -33,7 +33,6 @@ session_start();
 <main>
 
   <br>
-  <!-- <a id="go_signin" href="inscription.php">Retour vers la page d'accueil ?</a> -->
   <br>
   <?php
    if ($_GET['sit'] == 1) {

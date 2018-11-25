@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-if (isset($_SESSION['user']))
-{
-  header('location: membre.php');
+if (isset($_SESSION['user'])) {
+    header('location: membre.php');
+    exit();
 }
 ?>
 
@@ -26,13 +26,11 @@ if (isset($_SESSION['user']))
     <li><a href="gallery.php">Gallery</a></li>
     <?php
     if ($_SESSION['user']) {
-      echo "<li><a href='deconnexion.php'>Deconnexion</a></li>";
+        echo "<li><a href='deconnexion.php'>Deconnexion</a></li>";
+    } else {
+        echo "<li><a href='index.php'>Connexion</a></li>";
     }
-    else {
-      echo "<li><a href='index.php'>Connexion</a></li>";
-    }
-     ?>
-  </ul>
+     ?></ul>
 </div>
 <main>
   <h2 id="title_connexion">CONNEXION</h2>
@@ -51,14 +49,15 @@ if (isset($_SESSION['user']))
   <br>
   <?php
    if ($_GET['error'] == 1) {
-     echo "<div style='color:red'>Erreur dans les identifiants</div>";
-   }
-   elseif ($_GET['error'] == 2) {
-     echo "<div style='color:red'>Erreur dans le mot de passe</div>";
-   }elseif ($_GET['error'] == 3) {
-     echo "<div style='color:red'>Erreur : Compte non confirmer, regarder vos mails</div>";
-   }elseif ($_GET['succes'] == 1) {
-     echo "<div style='color:green'>mot de passe reinitialiser !</div>";
+       echo "<div style='color:red'>Erreur dans les identifiants</div>";
+   } elseif ($_GET['error'] == 2) {
+       echo "<div style='color:red'>Erreur dans le mot de passe</div>";
+   } elseif ($_GET['error'] == 3) {
+       echo "<div style='color:red'>Erreur : Compte non confirmer, regarder vos mails</div>";
+   } elseif ($_GET['succes'] == 1) {
+       echo "<div style='color:green'>mot de passe reinitialiser !</div>";
+   } elseif ($_GET['succes'] == 2) {
+       echo "<div style='color:green'>Regardez votre boite mail pour la validation du compte !</div>";
    }
    ?>
 </main>

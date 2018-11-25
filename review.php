@@ -3,6 +3,7 @@ session_start();
 
 if (!isset($_SESSION['user'])) {
     header('location: index.php');
+    exit();
 }
 
 $db = new PDO('mysql:host=localhost;port=3306;dbname=camagru', 'root', 'pass87');
@@ -36,18 +37,16 @@ if (isset($_GET['id_img']) && !empty($_GET['id_img'])) {
             $sql->closeCursor();
 
             if ($result['ID_USER'] != $_SESSION[id]) {
+                $sql = $db->prepare('SELECT email, notif FROM login WHERE id_user= ?');
+                $sql->execute(array($result['ID_USER']));
+                $result = $sql->fetch();
 
-
-                  $sql = $db->prepare('SELECT email FROM login WHERE id_user= ?');
-                  $sql->execute(array($result['ID_USER']));
-                  $result = $sql->fetch();
-
-
-                  $header="MIME-Version: 1.0\r\n";
-                  $header.='From:"camagru.com"<Kalys21@gmail.com>'."\n";
-                  $header.='Content-Type:text/html; charset="uft-8"'."\n";
-                  $header.='Content-Transfer-Encoding: 8bit';
-                  $message='
+                if ($result['notif'] == 1) {
+                    $header="MIME-Version: 1.0\r\n";
+                    $header.='From:"camagru.com"<Kalys21@gmail.com>'."\n";
+                    $header.='Content-Type:text/html; charset="uft-8"'."\n";
+                    $header.='Content-Transfer-Encoding: 8bit';
+                    $message='
                    <html>
                       <body>
                          <div align="center">
@@ -58,8 +57,9 @@ if (isset($_GET['id_img']) && !empty($_GET['id_img'])) {
                       </body>
                    </html>
                        ';
-                  mail($result['email'], "Nouveau commentaire", $message, $header);
-          }
+                    mail($result['email'], "Nouveau commentaire", $message, $header);
+                }
+            }
         } else {
             $c_msg = "Erreur : Tous les champs doivent etre completes";
         }
@@ -67,6 +67,7 @@ if (isset($_GET['id_img']) && !empty($_GET['id_img'])) {
     }
 } else {
     header('location: gallery.php?page=1');
+    exit();
 }
 
 $comments = $db->prepare('SELECT * FROM T_COM WHERE ID_IMG = ? ORDER BY ID_COM DESC');
@@ -105,24 +106,25 @@ $comments->execute(array($get_id_img));
 
    ?>
     <br><br>
-    <a href="php/action.php?id=<?= $id?>&page=<?= $get_p_page?>">J'aime</a> (<?= $likes ?>)
+    <a href="php/action.php?id=<?= $id?>&page=<?= $get_p_page?>">J'aime</a> (
+    <?= $likes ?>)
     <br><br>
     <h2>Commentaires</h2>
     <form method="post">
       <textarea name="comment" placeholder="Votre commentaire..."></textarea><br>
-      <input type="submit" value="poster votre commetaire" name="submit_comment"/>
-   </form>
-      <?php if (isset($c_msg)) {
-              echo $c_msg;
-            }
+      <input type="submit" value="poster votre commetaire" name="submit_comment" />
+    </form>
+    <?php if (isset($c_msg)) {
+       echo $c_msg;
+   }
       ?>
-      <br>
-      <div id="con_com">
-        <?php  while ($c = $comments->fetch()) {
-                  echo "<div class='div_com'>".$c['USER']." : ".$c['TEXT_COM']."</div><br>";
-                }
+    <br>
+    <div id="con_com">
+      <?php  while ($c = $comments->fetch()) {
+          echo "<div class='div_com'>".$c['USER']." : ".$c['TEXT_COM']."</div><br>";
+      }
         ?>
-      </div>
+    </div>
   </main>
 </body>
 
