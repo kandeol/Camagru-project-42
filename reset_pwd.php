@@ -20,6 +20,9 @@
              if ($_POST['pwd'] == $_POST['re_pwd']) {
                  if (strlen($_POST['pwd']) < 5 || strlen($_POST['pwd']) > 20) {
                      $e_msg = "<span style='color:red'>le mot de passe doit faire entre 5 et 20 caracteres</span><br>";
+                 }
+                 if (!preg_match('/[A-Z]/', $_POST['pwd']) || !preg_match('/[a-z]/', $_POST['pwd']) || !preg_match('/[0-9]/', $_POST['pwd'])) {
+                   $e_msg = "<span style='color:red'>le mot de passe doit contenir une majuscule , minuscule et un chiffre </span><br>";
                  } else {
                      $new_pwd_hash = hash('whirlpool', $_POST['pwd']);
 
@@ -31,7 +34,7 @@
                      exit();
                  }
              } else {
-                 $e_msg = "<span style='color:red'>les mots de passe ne sont identiques</span><br>";
+                 $e_msg = "<span style='color:red'>les mots de passe ne sont pas identiques</span><br>";
              }
          }
          // code...

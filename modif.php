@@ -86,12 +86,16 @@ if (isset($_POST['submit_modif']) && $_POST['submit_modif'] == "valider") {
 
         if ($old_pwd_hash == $result['pwd']) {
             if ($_POST['old_pwd'] == $_POST['new_pwd']) {
-                header('location: profile.php?error=errornewpwd');
+                header('location: profile.php?error=1');
                 exit();
             }
             if (strlen($_POST['new_pwd']) < 5 || strlen($_POST['new_pwd']) > 20) {
-                header('location: profile.php?error=errorpwd');
+                header('location: profile.php?error=2');
                 exit();
+            }
+            if (!preg_match('/[A-Z]/', $_POST['new_pwd']) || !preg_match('/[a-z]/', $_POST['new_pwd']) || !preg_match('/[0-9]/', $_POST['new_pwd'])) {
+              header('location: profile.php?error=3');
+              exit();
             }
             $new_pwd_hash = hash('whirlpool', $_POST['new_pwd']);
 
@@ -99,7 +103,7 @@ if (isset($_POST['submit_modif']) && $_POST['submit_modif'] == "valider") {
             $sql->execute(array($new_pwd_hash, $_SESSION['id']));
             $sql->closeCursor();
         } else {
-            header('location: profile.php?error=errorpwd');
+            header('location: profile.php?error=4');
             exit();
         }
 

@@ -24,7 +24,6 @@ if (isset($_GET['user'] , $_GET['key']) && !empty($_GET['user']) && !empty($_GET
             $update->bindParam(2, $key, PDO::PARAM_INT);
             $update->execute(array($user, $key));
             if ($update->rowCount() == 1) {
-                $_SESSION['user'] == $result['user'];
                 header('location: welcome.php?sit=1');
                 exit();
             } else {

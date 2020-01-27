@@ -67,6 +67,9 @@ session_start();
     } elseif ($_GET['error'] == 8) {
         echo "<div style='color:red'>le mot de passe doit faire entre 5 et 20 caracteres</div>";
         # code...
+    } elseif ($_GET['error'] == 9) {
+        echo "<div style='color:red'>le mot de passe doit contenir une majuscule , minuscule et un chiffre </div>";
+        # code...
     }
 
     ?>

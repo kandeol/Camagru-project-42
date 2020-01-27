@@ -90,6 +90,21 @@ $comments->execute(array($get_id_img));
     <h1 class="title"> CAMAGRU </h1>
   </header>
   <!-- Menu de navigation du site -->
+  <div id="bar_nav">
+    <ul>
+      <!--  <li><a class="active" href="#home">Home</a></li> -->
+      <li><a href="profile.php">Profile</a></li>
+      <li><a href="membre.php">Montage</a></li>
+      <li><a href="gallery.php">Gallery</a></li>
+      <?php
+      if ($_SESSION['user']) {
+          echo "<li><a href='deconnexion.php'>Deconnexion</a></li>";
+      } else {
+          echo "<li><a href='index.php'>Connexion</a></li>";
+      }
+       ?>
+    </ul>
+  </div>
   <main id="main_review">
     <div id="return_gallery"><a href="gallery.php?page=<?= $get_p_page?>">Retour sur la gallery</a></div>
     <h2>REVIEW</h2>

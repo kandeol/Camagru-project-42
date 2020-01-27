@@ -31,6 +31,11 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Valider") {
             header('Location: inscription.php?error=8');
             exit();
         }
+
+        if (!preg_match('/[A-Z]/', $_POST['pwd']) || !preg_match('/[a-z]/', $_POST['pwd']) || !preg_match('/[0-9]/', $_POST['pwd'])) {
+          header('Location: inscription.php?error=9');
+          exit();
+        }
         $longueurKey = 15;
         $key = "";
         $confirme = 0;
@@ -42,7 +47,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Valider") {
         $verify_user = $db->prepare('SELECT count(*) FROM login WHERE user = ?');
         $verify_user->bindParam(1, $user, PDO::PARAM_STR);
         $verify_email = $db->prepare('SELECT count(*) FROM login WHERE email = ?');
-        $sql->bindParam(1, $_POST['email'], PDO::PARAM_STR);
+        $verify_email->bindParam(1, $_POST['email'], PDO::PARAM_STR);
 
         $sql = $db->prepare('INSERT INTO login(user,pwd,email,confirmkey,confirme,notif) VALUES(?, ?, ?, ?, ?, ?)');
         $sql->bindParam(1, $user, PDO::PARAM_STR);
@@ -99,7 +104,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == "Valider") {
                 $_SESSION['notif'] = $notif;
                 $_SESSION['email'] = $_POST['email'];
 
-                header('Location: membre.php?succes=2');
+                header('Location: index.php?succes=2');
                 exit();
             } else {
                 header('location: membre.php?error=5');

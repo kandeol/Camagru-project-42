@@ -50,12 +50,12 @@ if (!isset($_SESSION['user'])) {
     <br>
     <br>
     <form action="membre.php" method="post" enctype="multipart/form-data">
-      <input type="file" name="myimage">
-      <input type="radio" name="type_filter" value="filter1" checked><img src="data/tail.png" height=50 width="80" />
-      <input type="radio" name="type_filter" value="filter2"><img src="data/edward.png" height=50 width="80" />
-      <input type="radio" name="type_filter" value="filter3"><img src="data/cadre.png" height=50 width="80" />
-      <input type="radio" name="type_filter" value="filter4"><img src="data/filtro.png" height=50 width="80" />
-      <input type="radio" name="type_filter" value="filter5"><img src="data/light_texture_ix_by_avenue_of_art.png" height=50 width="80" />
+      <input type="file" name="myimage"><br>
+      <input class="filter" type="radio" name="type_filter" value="filter1" checked><img src="images/tail.png" height=50 width="80" />
+      <input class="filter" type="radio" name="type_filter" value="filter2"><img src="images/edward.png" height=50 width="80" />
+      <input class="filter" type="radio" name="type_filter" value="filter3"><img src="images/cadre.png" height=50 width="80" />
+      <!-- <input type="radio" name="type_filter" value="filter4"><img src="images/filtro.png" height=50 width="80" />
+      <input type="radio" name="type_filter" value="filter5"><img src="images/light_texture_ix_by_avenue_of_art.png" height=50 width="80" /> -->
       <br>
       <input type="submit" name="submit_filter" value="Montage" />
     </form>
@@ -69,7 +69,7 @@ if (!isset($_SESSION['user'])) {
       }
       $tmp_img = $_FILES['myimage']['tmp_name'];
       $name_img = str_replace(' ', '', $_FILES['myimage']['name']);
-      $legalExtensions = array("jpg", "png", "jpeg", "gif");
+      $legalExtensions = array("jpg", "png", "jpeg");
       $legalSize = "1000000";
       $actualSize = $_FILES['myimage']['size'];
       $extension = pathinfo($_FILES['myimage']['name'], PATHINFO_EXTENSION);
@@ -84,8 +84,8 @@ if (!isset($_SESSION['user'])) {
           // echo "test1";
           } else {
               $error = true;
-              echo $tmp_img = $_FILES['myimage']['tmp_name'];
-              echo "test0";
+              // echo $tmp_img = $_FILES['myimage']['tmp_name'];
+              // echo "test0";
           }
       }
 
@@ -94,7 +94,7 @@ if (!isset($_SESSION['user'])) {
           if ($actualSize < $legalSize) {
               if (in_array($extension, $legalExtensions)) {
                   $target_path = "images/";
-                  echo $target_path.$name_img;
+                  // echo $target_path.$name_img;
                   $target_path = $target_path.basename($name_img);
                   if (isset($_FILES['myimage']['tmp_name']) && !empty($_FILES['myimage']['tmp_name'])) {
                       if (move_uploaded_file($_FILES['myimage']['tmp_name'], $target_path)) {
@@ -123,9 +123,8 @@ if (!isset($_SESSION['user'])) {
                           $dest = imagecreatefromjpeg($_SESSION['path_img']);
                       } elseif ($extension == "png") {
                           $dest = imagecreatefrompng($_SESSION['path_img']);
-                      } else {
-                          $dest = imagecreatefromgif($_SESSION['path_img']);
                       }
+
                       $l_s = imagesx($src);
                       $h_s = imagesy($src);
                       $l_d = imagesx($dest);
@@ -151,7 +150,8 @@ if (!isset($_SESSION['user'])) {
                       $sql->bindParam(2, $_SESSION['id'], PDO::PARAM_INT);
 
                       if ($sql->execute(array($target, $_SESSION['id'])) == true) {
-                          echo "<br><img src=".$target." height=240px width=320px /><br>";
+                          echo "<br><span style='color:green'>Apercu</span><br>";
+                          echo "<br><img id='apercu' src=".$target." height=240px width=320px /><br>";
                       } else {
                           echo "error";
                       }
@@ -159,12 +159,14 @@ if (!isset($_SESSION['user'])) {
                   // echo "path : ".$target_path;
                   unlink($target_path);
               } else {
-                  $c_msg = "Mauvais format d'images , only jpg/jpeg,png,gif";
+                  $c_msg = "Mauvais format d'images , only jpg/jpeg,png";
               }
               // echo "saut";
+          }else {
+            $c_msg = "Image trop lourde ";
           }
       } else {
-          echo "code error";
+          echo "<div style='color:red'>Pas de photo ni d'upload</div>";
       }
   } else {
       echo "Pas d'upload !";
@@ -195,7 +197,7 @@ while ($result = $sql->fetch()) {
 
   </div>
   <footer>
-
+    CAMAGRU 2018
   </footer>
 
 </body>

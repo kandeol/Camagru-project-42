@@ -1,10 +1,9 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user']))
-{
-  header('location: index.php?error=nolog');
-  exit();
+if (!isset($_SESSION['user'])) {
+    header('location: index.php?error=nolog');
+    exit();
 }
 
 ?>
@@ -38,10 +37,9 @@ if (!isset($_SESSION['user']))
       <li><a href="gallery.php">Gallery</a></li>
       <?php
      if ($_SESSION['user']) {
-       echo "<li><a href='deconnexion.php'>Deconnexion</a></li>";
-     }
-     else {
-       echo "<li><a href='index.php'>Connexion</a></li>";
+         echo "<li><a href='deconnexion.php'>Deconnexion</a></li>";
+     } else {
+         echo "<li><a href='index.php'>Connexion</a></li>";
      }
       ?>
     </ul>
@@ -61,7 +59,7 @@ if (!isset($_SESSION['user']))
     <div class="p_email"> Votre email :
       <?php echo $_SESSION['email']; ?>
     </div>
-    <div class="bouton_modif" onclick="bascule('form_email');"> modifier </div>
+    <a><div class="bouton_modif" onclick="bascule('form_email');"> modifier </div></a>
     <div id="form_email">
       <form action="modif.php" method="post">
         <input type="text" name="new_email">
@@ -83,22 +81,41 @@ if (!isset($_SESSION['user']))
     <div>
       <form method="post" action="action_notif.php">
         Notification :
-        <span>On</span><input type="radio" name="notif" value="on" <?php if ($_SESSION['notif']==1) { echo "checked" ;}?>>
-        <span>Off</span><input type="radio" name="notif" value="off" <?php if ($_SESSION['notif']==0) { echo "checked" ;}?>>
+        <span>On</span><input type="radio" name="notif" value="on" <?php if ($_SESSION['notif']==1) {
+          echo "checked" ;
+      }?>>
+        <span>Off</span><input type="radio" name="notif" value="off" <?php if ($_SESSION['notif']==0) {
+          echo "checked" ;
+      }?>>
         <input type="submit" name="submit_notif" value="modifier">
       </form>
     </div>
     <br>
     <span>
       <?php if ($_GET['s'] == 1) {
-       echo "<div style='color:green'>modification effectuée !</div>";
-     } ?></span>
+          echo "<div style='color:green'>modification effectuée !</div>";
+      } if ($_GET['succes'] == 3) {
+        echo "<div style='color:green'>SUCCES</div>";
+      }
+       if ($_GET['error'] == 1) {
+           echo "<div style='color:red'>Ancien mot de passe et nouveau mot de passe identiques </div>";
+       }
+       if ($_GET['error'] == 2) {
+         echo "<div style='color:red'>le nouveau mot de passe doit faire entre 5 et 20 caracteres</div>";
+       }
+       if ($_GET['error'] == 3) {
+           echo "<div style='color:red'>le mot de passe doit contenir une majuscule , minuscule et un chiffre </div>";
+       }
+       if ($_GET['error'] == 4) {
+           echo "<div style='color:red'>Mauvais mot de passe </div>";
+       }
+
+     ?>
+
+
+   </span>
     <br>
   </main>
-
-  <footer>
-
-  </footer>
 
 </body>
 

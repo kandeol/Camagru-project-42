@@ -69,6 +69,7 @@ main {
   margin-top: 15px;
   text-align: center;
   padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 main a {
@@ -79,6 +80,15 @@ main a {
 
 body #main_mem {
   width: 72%;
+}
+
+footer{
+  background-color: #f8b173;
+  height: 150px;
+  width: 100%;
+  bottom: -253px;
+  position: relative;
+  text-align: right;
 }
 
 #title_connexion {
@@ -136,11 +146,21 @@ main h2 {
   font-size: 11px;
 }
 
+.bouton_modif{
+
+border: 1px solid black;
+border-radius: 5px;
+width: 91px;
+display: inline-block;
+cursor:pointer;
+background-color: #f59541;
+
+}
 .side {
   text-align: center;
   /* border: 1px solid black; */
   position: absolute;
-  height: 750px;
+  height: 726px;
   top: 236px;
   right: 4px;
   background-color: #f8b173;
@@ -185,4 +205,59 @@ body .side {
 
 #bmount {
   cursor: not-allowed;
+}
+
+
+
+
+
+
+
+@media (max-width:1100px)
+{
+  div#bar_nav
+  {
+    font-size: 15px;
+  }
+
+  div#bar_nav a
+  {
+    font-size: 13px;
+    padding:5px;
+  }
+
+  .filter{
+
+    width:10%;
+    height:auto;
+  }
+  #apercu{
+    width:100%;
+    height:auto;
+
+
+  }
+
+  #video,
+  #snap,
+  #canvas
+  {
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;
+    height:auto;
+  }
+  #img_save
+  {
+    width:100%;
+    height:auto;
+  }
+
+  div.side
+  {
+      width-max:100px;
+      width:20%;
+  }
+
 }
